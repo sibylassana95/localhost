@@ -1,20 +1,23 @@
 # 🚀 LocalHost Dashboard
 
-> Une page d'accueil élégante et fonctionnelle pour votre environnement de développement local
+> Une page d'accueil élégante et fonctionnelle pour votre environnement de développement local, construite avec React et TypeScript
 
 ![Preview](https://img.shields.io/badge/Version-1.0-orange?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
-![Language](https://img.shields.io/badge/Made%20with-HTML%2FCSS%2FJS-red?style=for-the-badge)
+![React](https://img.shields.io/badge/React-18.2+-blue?style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue?style=for-the-badge)
+![Vite](https://img.shields.io/badge/Vite-5.0+-purple?style=for-the-badge)
 
 ## ✨ Fonctionnalités
 
 - 🕐 **Horloge numérique** - Affichage de l'heure et date en temps réel
-- 🔗 **Liens rapides** - Accès direct aux ports de développement les plus utilisés
+- 🔗 **Gestion des ports favoris** - Ajout, suppression et restauration des ports personnalisés
 - 🎯 **Port personnalisé** - Possibilité d'entrer n'importe quel port
 - 🔍 **Recherche Google** - Recherche directe depuis votre localhost
-- 🎨 **Design moderne** - Interface sombre avec accents orange
+- 🎨 **Thèmes multiples** - Changement de thème avec DaisyUI (Dracula, etc.)
 - 📱 **Responsive** - Compatible mobile et desktop
-- ⚡ **Léger** - Aucune dépendance externe
+- 💾 **Persistance** - Sauvegarde automatique des ports favoris dans localStorage
+- ⚡ **Rapide** - Construit avec Vite pour un développement rapide
 
 ## 🎯 Ports pré-configurés
 
@@ -31,85 +34,122 @@
 
 ## 🚀 Installation
 
-### Option 1: Clone direct
+### Prérequis
+
+- Node.js 18+
+- npm ou bun
+
+### Installation
 
 ```bash
 git clone https://github.com/Ygryan360/localhost.git
 cd localhost
+npm install
+# ou
+bun install
 ```
 
-### Option 2: Téléchargement
+### Démarrage en développement
 
-Téléchargez les fichiers et placez-les dans votre dossier localhost préféré.
+```bash
+npm run dev
+# ou
+bun run dev
+```
+
+L'application sera disponible sur `http://localhost:5173`
+
+### Build pour production
+
+```bash
+npm run build
+# ou
+bun run build
+```
 
 ## 💻 Utilisation
 
 ### Configuration comme page d'accueil
 
-1. **Démarrer un serveur local** (optionnel)
+1. **Démarrer l'application**
 
    ```bash
-   # Python
-   python3 -m http.server 80
-
-   # Node.js (avec http-server)
-   npx http-server -p 80
-
-   # PHP
-   php -S localhost:80
+   npm run dev
    ```
 
 2. **Configurer votre navigateur**
-   - **Chrome/Edge** : Paramètres → Démarrage → Ouvrir une page spécifique → `http://localhost`
-   - **Firefox** : Paramètres → Accueil → Page d'accueil → `http://localhost`
-   - **Safari** : Préférences → Général → Page d'accueil → `http://localhost`
+   - **Chrome/Edge** : Paramètres → Démarrage → Ouvrir une page spécifique → `http://localhost:5173`
+   - **Firefox** : Paramètres → Accueil → Page d'accueil → `http://localhost:5173`
+   - **Safari** : Préférences → Général → Page d'accueil → `http://localhost:5173`
 
-### Ou simplement ouvrir le fichier
+### Gestion des ports favoris
 
-Double-cliquez sur `index.html` pour l'ouvrir directement dans votre navigateur.
+- **Ajouter un port** : Cliquez sur "+ Add Port" et remplissez le formulaire
+- **Supprimer un port** : Survolez un port favori et cliquez sur ✕
+- **Restaurer les défauts** : Cliquez sur "Restore Defaults" pour remettre les ports par défaut
+
+### Changement de thème
+
+Cliquez sur l'icône de palette en haut à droite pour changer de thème.
 
 ## 📁 Structure du projet
 
 ```
 localhost-dashboard/
-├── index.html          # Page principale
-├── style.css           # Styles CSS
-├── script.js           # Fonctionnalités JavaScript
-└── README.md           # Documentation
+├── src/
+│   ├── components/
+│   │   ├── AddPortModal.tsx      # Modal d'ajout de port
+│   │   ├── Clock.tsx             # Composant horloge
+│   │   ├── CustomPortSection.tsx # Section port personnalisé
+│   │   ├── FavoritePorts.tsx     # Gestion des ports favoris
+│   │   ├── SearchSection.tsx     # Section recherche
+│   │   └── ThemeSwitcher.tsx     # Sélecteur de thème
+│   ├── App.tsx                   # Composant principal
+│   ├── constants.ts              # Constantes (ports par défaut, thèmes)
+│   ├── index.tsx                 # Point d'entrée
+│   ├── types.ts                  # Types TypeScript
+│   └── app.css                  # Styles globaux
+├── index.html                    # Template HTML
+├── package.json                  # Dépendances et scripts
+├── vite.config.ts                # Configuration Vite
+├── tsconfig.json                 # Configuration TypeScript
+└── README.md                     # Documentation
 ```
 
 ## 🎨 Personnalisation
 
-### Modifier les ports favoris
+### Modifier les ports par défaut
 
-Éditez le fichier `index.html` pour ajouter/modifier les liens :
+Éditez `src/constants.ts` :
 
-```html
-<a href="http://localhost:VOTRE_PORT" class="port-link">
-  <span class="port-number">VOTRE_PORT</span>
-  <span class="port-description">Votre Description</span>
-</a>
+```typescript
+export const INITIAL_FAVORITE_PORTS: Port[] = [
+  { number: 3000, description: 'Next.js / React', color: 'bg-sky-500' },
+  // Ajoutez vos ports...
+];
 ```
 
-### Changer les couleurs
+### Ajouter des thèmes
 
-Modifiez les variables CSS dans `style.css` :
+Les thèmes utilisent DaisyUI. Pour ajouter un thème, modifiez `src/constants.ts` :
 
-```css
-:root {
-  --bg-base-300: #000000; /* Arrière-plan principal */
-  --bg-base-200: #0b0908; /* Arrière-plan secondaire */
-  --bg-base-100: #1b1816; /* Arrière-plan tertiaire */
-  --base-content: #cdcdcd; /* Couleur du texte */
-  --primary: #ff8f00; /* Couleur d'accent (orange) */
-}
+```typescript
+export const DAISYUI_THEMES = [
+  'dracula',
+  'dark',
+  'light',
+  // Ajoutez vos thèmes...
+];
 ```
 
 ## 🛠️ Technologies utilisées
 
-- **HTML5** - Structure sémantique
-- **CSS3** - Styles modernes avec variables CSS et Grid
-- **JavaScript (Vanilla)** - Fonctionnalités interactives
+- **React 18** - Bibliothèque UI
+- **TypeScript** - Typage statique
+- **Vite** - Outil de build rapide
+- **DaisyUI** - Framework CSS basé sur Tailwind
+- **Tailwind CSS** - Framework CSS utilitaire
+- **Lucide React** - Icônes
 - **Font Inter** - Typographie moderne
 
 ## 🤝 Contribution
@@ -125,12 +165,13 @@ Les contributions sont les bienvenues ! N'hésitez pas à :
 ## 📝 Idées d'améliorations
 
 - [ ] Ajouter plus de moteurs de recherche (DuckDuckGo, Bing, etc.)
-- [ ] Système de favoris personnalisables
-- [ ] Thèmes multiples
+- [ ] Export/Import des ports favoris
 - [ ] Raccourcis clavier
 - [ ] Historique des ports utilisés
 - [ ] Widget météo
 - [ ] Statut des services (port actif/inactif)
+- [ ] Mode hors ligne
+- [ ] Synchronisation cloud des favoris
 
 ## 📄 Licence
 

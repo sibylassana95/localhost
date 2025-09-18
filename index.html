@@ -1,88 +1,19 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en" data-theme="dracula">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>localhost | Young Host</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png">
+  <link rel="manifest" href="/public/site.webmanifest">
+  <title>localhost Dashboard</title>
 </head>
 
-<body>
-  <div class="container">
-    <header>
-      <div class="clock-container">
-        <div id="digitalClock" class="digital-clock">
-          <span id="time">00:00:00</span>
-          <span id="date">Lundi 6 Août 2025</span>
-        </div>
-      </div>
-      <h1>localHost</h1>
-      <p>Bienvenue Young Ryan !</p>
-    </header>
-
-    <main>
-      <section class="input-section">
-        <h2>Recherche sur internet :</h2>
-        <div class="input-container">
-          <input type="text" id="searchInput" placeholder="Rechercher sur Google...">
-          <button id="searchButton">Rechercher</button>
-        </div>
-      </section>
-
-      <section class="quick-links">
-        <h2>Ports favoris</h2>
-        <div class="links-grid">
-          <a href="http://localhost:3000" class="port-link" data-port="3000">
-            <span class="port-number">3000</span>
-            <span class="port-description">Next.js / React</span>
-          </a>
-          <a href="http://localhost:8000" class="port-link" data-port="8000">
-            <span class="port-number">8000</span>
-            <span class="port-description">Laravel / Django</span>
-          </a>
-          <a href="http://localhost:5173" class="port-link" data-port="5173">
-            <span class="port-number">5173</span>
-            <span class="port-description">Vite</span>
-          </a>
-          <a href="http://localhost:4200" class="port-link" data-port="4200">
-            <span class="port-number">4200</span>
-            <span class="port-description">Angular</span>
-          </a>
-          <a href="http://localhost:8080" class="port-link" data-port="8080">
-            <span class="port-number">8080</span>
-            <span class="port-description">Vue.js / Webpack</span>
-          </a>
-          <a href="http://localhost:5000" class="port-link" data-port="5000">
-            <span class="port-number">5000</span>
-            <span class="port-description">Flask / Express</span>
-          </a>
-          <a href="http://localhost:9000" class="port-link" data-port="9000">
-            <span class="port-number">9000</span>
-            <span class="port-description">Play Framework</span>
-          </a>
-          <a href="http://localhost:1313" class="port-link" data-port="1313">
-            <span class="port-number">1313</span>
-            <span class="port-description">Hugo</span>
-          </a>
-        </div>
-      </section>
-
-      <section class="input-section">
-        <h2>Port Personnalisé</h2>
-        <div class="input-container">
-          <input type="number" id="customPort" placeholder="Entrez un port (ex: 3001)" min="1" max="65535">
-          <button id="goToPort">Aller au port</button>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <p>Happy coding!</p>
-    </footer>
-  </div>
-
-  <script src="script.js"></script>
+<body class="bg-base-100">
+  <div id="root"></div>
+  <script type="module" src="/src/index.tsx"></script>
 </body>
 
 </html>
