@@ -21,9 +21,15 @@ const ThemeSwitcher: React.FC = () => {
 
   return (
     <div title="Change Theme" className="dropdown dropdown-end">
-      <div role="button" tabIndex={0} className="btn btn-ghost gap-1">
-        <SwatchBook className="h-6 w-6 text-base-content/70 hover:text-base-content transition-colors duration-200" />
-        <ChevronDown className="h-6 w-6 transition-transform duration-200 hover:rotate-180" />
+      <div className="tooltip" data-tip="Change Theme">
+        <div
+          role="button"
+          tabIndex={0}
+          className="btn btn-ghost opacity-70 hover:opacity-100 gap-1"
+        >
+          <SwatchBook className="h-6 w-6" />
+          <ChevronDown className="h-6 w-6" />
+        </div>
       </div>
       <div
         tabIndex={0}

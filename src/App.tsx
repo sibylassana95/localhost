@@ -5,6 +5,7 @@ import AddPortModal from './components/AddPortModal';
 import Clock from './components/Clock';
 import CustomPortSection from './components/CustomPortSection';
 import FavoritePorts from './components/FavoritePorts';
+import GithubIcon from './components/icons/Github';
 import type { Port } from './types';
 import SearchSection from './components/SearchSection';
 import ThemeSwitcher from './components/ThemeSwitcher';
@@ -84,7 +85,7 @@ const App: React.FC = () => {
           </div>
           <header className="text-center">
             <Clock />
-            <h1 className="text-5xl font-bold mt-4 text-primary font-mono">localHost</h1>
+            <h1 className="text-5xl font-black mt-4 text-primary">localHost</h1>
             <p className="text-xl mt-2 text-base-content/70">Welcome Young Developer!</p>
           </header>
         </div>
@@ -102,6 +103,14 @@ const App: React.FC = () => {
 
         <footer className="text-center mt-12">
           <p className="text-base-content/50">Happy coding!</p>
+          <a
+            href="https://github.com/Ygryan360/localhost.git"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Star on GitHub"
+          >
+            <GithubIcon className="w-6 h-6 mx-auto mt-2 text-base-content/50 hover:text-base-content transition-colors" />
+          </a>
         </footer>
       </div>
 

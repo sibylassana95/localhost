@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { SquareArrowOutUpRight } from 'lucide-react';
+
 const CustomPortSection: React.FC = () => {
   const [port, setPort] = useState('');
 
@@ -39,6 +41,7 @@ const CustomPortSection: React.FC = () => {
           className="input input-bordered join-item w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         />
         <button className="btn btn-secondary join-item" onClick={goToCustomPort}>
+          <SquareArrowOutUpRight className="h-4 w-4 mr-1" />
           Go to Port
         </button>
       </div>

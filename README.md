@@ -185,4 +185,6 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 
 Fait avec ❤️ par [Young Ryan](https://github.com/Ygryan360)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f3c38f56-2320-4272-8612-1e9194631503/deploy-status)](https://app.netlify.com/projects/localhost-ygr/deploys)
+
 </div>

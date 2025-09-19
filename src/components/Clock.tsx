@@ -23,7 +23,7 @@ const Clock: React.FC = () => {
 
   return (
     <div className="bg-base-300 rounded-box border border-base-content/10 p-8 mb-4 inline-block">
-      <div className="text-4xl font-black font-mono text-accent">{timeString}</div>
+      <div className="text-4xl font-black text-accent">{timeString}</div>
       <div className="text-sm text-base-content/70 tracking-wide mt-2">
         {dateString.toUpperCase()}
       </div>

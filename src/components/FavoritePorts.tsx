@@ -59,7 +59,7 @@ const FavoritePorts: React.FC<FavoritePortsProps> = ({
 
           <div className="tooltip" data-tip="Add a new port">
             <button className="btn btn-primary btn-sm" onClick={onAddPortClick}>
-              <Grid2x2Plus className="w-4 h-4" />
+              <Grid2x2Plus className="w-4 h-4" /> Add
             </button>
           </div>
         </div>
