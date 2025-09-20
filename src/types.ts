@@ -5,6 +5,13 @@ export interface Port {
   color: string;
 }
 
+export interface LocalSite {
+  name: string;
+  path: string;
+  description: string;
+  color: string;
+}
+
 export enum SearchEngine {
   Google = 'Google',
   DuckDuckGo = 'DuckDuckGo',

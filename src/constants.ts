@@ -1,4 +1,4 @@
-import type { Port, SearchEngineOption } from './types';
+import type { Port, SearchEngineOption, LocalSite } from './types';
 
 import { SearchEngine } from './types';
 
@@ -21,6 +21,12 @@ export const SEARCH_ENGINES: SearchEngineOption[] = [
 ];
 
 export const LOCAL_STORAGE_KEY = 'favoritePorts';
+export const LOCAL_SITES_STORAGE_KEY = 'localSites';
+
+export const INITIAL_LOCAL_SITES: LocalSite[] = [
+  { name: 'phpMyAdmin', path: 'phpmyadmin', description: 'Database Admin', color: 'bg-orange-500' },
+  { name: 'Dashboard', path: 'dashboard', description: 'XAMPP Dashboard', color: 'bg-blue-500' },
+];
 
 export const DAISYUI_THEMES = [
   'light',

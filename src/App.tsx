@@ -1,18 +1,22 @@
-import { INITIAL_FAVORITE_PORTS, LOCAL_STORAGE_KEY } from './constants';
+import { INITIAL_FAVORITE_PORTS, LOCAL_STORAGE_KEY, INITIAL_LOCAL_SITES, LOCAL_SITES_STORAGE_KEY } from './constants';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import AddPortModal from './components/AddPortModal';
+import AddSiteModal from './components/AddSiteModal';
 import Clock from './components/Clock';
 import CustomPortSection from './components/CustomPortSection';
 import FavoritePorts from './components/FavoritePorts';
+import LocalSites from './components/LocalSites';
 import GithubIcon from './components/icons/Github';
-import type { Port } from './types';
+import type { Port, LocalSite } from './types';
 import SearchSection from './components/SearchSection';
 import ThemeSwitcher from './components/ThemeSwitcher';
 
 const App: React.FC = () => {
   const [favoritePorts, setFavoritePorts] = useState<Port[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [localSites, setLocalSites] = useState<LocalSite[]>([]);
+  const [isPortModalOpen, setIsPortModalOpen] = useState(false);
+  const [isSiteModalOpen, setIsSiteModalOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -26,6 +30,18 @@ const App: React.FC = () => {
       console.error('Failed to load ports from local storage', error);
       setFavoritePorts(INITIAL_FAVORITE_PORTS);
     }
+
+    try {
+      const storedSites = localStorage.getItem(LOCAL_SITES_STORAGE_KEY);
+      if (storedSites) {
+        setLocalSites(JSON.parse(storedSites));
+      } else {
+        setLocalSites(INITIAL_LOCAL_SITES);
+      }
+    } catch (error) {
+      console.error('Failed to load sites from local storage', error);
+      setLocalSites(INITIAL_LOCAL_SITES);
+    }
   }, []);
 
   useEffect(() => {
@@ -35,6 +51,14 @@ const App: React.FC = () => {
       console.error('Failed to save ports to local storage', error);
     }
   }, [favoritePorts]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LOCAL_SITES_STORAGE_KEY, JSON.stringify(localSites));
+    } catch (error) {
+      console.error('Failed to save sites to local storage', error);
+    }
+  }, [localSites]);
 
   const handleAddPort = useCallback(
     (newPort: Omit<Port, 'color'>) => {
@@ -57,7 +81,7 @@ const App: React.FC = () => {
       const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
       setFavoritePorts((prevPorts) => [...prevPorts, { ...newPort, color: randomColor }]);
-      setIsModalOpen(false);
+      setIsPortModalOpen(false);
     },
     [favoritePorts]
   );
@@ -73,6 +97,46 @@ const App: React.FC = () => {
       )
     ) {
       setFavoritePorts(INITIAL_FAVORITE_PORTS);
+    }
+  }, []);
+
+  const handleAddSite = useCallback(
+    (newSite: Omit<LocalSite, 'color'>) => {
+      if (localSites.some((s) => s.name === newSite.name)) {
+        alert(`Site "${newSite.name}" already exists in your favorites.`);
+        return;
+      }
+      const colors = [
+        'bg-sky-500',
+        'bg-red-500',
+        'bg-purple-500',
+        'bg-green-500',
+        'bg-blue-600',
+        'bg-orange-500',
+        'bg-teal-500',
+        'bg-indigo-500',
+        'bg-pink-500',
+        'bg-yellow-500',
+      ];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+      setLocalSites((prevSites) => [...prevSites, { ...newSite, color: randomColor }]);
+      setIsSiteModalOpen(false);
+    },
+    [localSites]
+  );
+
+  const handleRemoveSite = useCallback((siteName: string) => {
+    setLocalSites((prevSites) => prevSites.filter((s) => s.name !== siteName));
+  }, []);
+
+  const handleRestoreSiteDefaults = useCallback(() => {
+    if (
+      confirm(
+        'Are you sure you want to restore default sites? This will remove all your custom sites.'
+      )
+    ) {
+      setLocalSites(INITIAL_LOCAL_SITES);
     }
   }, []);
 
@@ -94,9 +158,15 @@ const App: React.FC = () => {
           <SearchSection />
           <FavoritePorts
             ports={favoritePorts}
-            onAddPortClick={() => setIsModalOpen(true)}
+            onAddPortClick={() => setIsPortModalOpen(true)}
             onRemovePort={handleRemovePort}
             onRestoreDefaults={handleRestoreDefaults}
+          />
+          <LocalSites
+            sites={localSites}
+            onAddSiteClick={() => setIsSiteModalOpen(true)}
+            onRemoveSite={handleRemoveSite}
+            onRestoreDefaults={handleRestoreSiteDefaults}
           />
           <CustomPortSection />
         </main>
@@ -115,9 +185,14 @@ const App: React.FC = () => {
       </div>
 
       <AddPortModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        isOpen={isPortModalOpen}
+        onClose={() => setIsPortModalOpen(false)}
         onAdd={handleAddPort}
+      />
+      <AddSiteModal
+        isOpen={isSiteModalOpen}
+        onClose={() => setIsSiteModalOpen(false)}
+        onAdd={handleAddSite}
       />
     </div>
   );
