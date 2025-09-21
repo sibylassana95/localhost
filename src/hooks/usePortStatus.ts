@@ -34,7 +34,7 @@ export const usePortStatus = (ports: number[], options: UsePortStatusOptions = {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), timeout);
 
-        const response = await fetch(`http://localhost:${port}`, {
+        await fetch(`http://localhost:${port}`, {
           method: 'HEAD',
           signal: controller.signal,
           mode: 'no-cors',
