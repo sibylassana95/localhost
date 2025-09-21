@@ -18,8 +18,17 @@ const PortLink: React.FC<{ port: Port; onRemove: (portNumber: number) => void }>
     href={`http://localhost:${port.number}`}
     target="_blank"
     rel="noopener noreferrer"
-    className={`card text-white shadow-xl transform transition-transform hover:scale-105 group ${port.color}`}
+    className={`card text-white shadow-xl transform transition-transform hover:scale-105 group relative ${
+      port.color
+    } ${port.isActive ? 'tooltip tooltip-success' : ''}`}
+    data-tip={port.isActive ? 'This port is active' : ''}
   >
+    {port.isActive !== undefined && port.isActive && (
+      <span
+        title="This port is active"
+        className="status status-success status-lg absolute top-0 right-0"
+      ></span>
+    )}
     <div className="card-body p-4 flex-row items-center justify-between">
       <div>
         <h3 className="card-title text-2xl font-bold">{port.number}</h3>
