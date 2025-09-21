@@ -1,5 +1,10 @@
-import { INITIAL_FAVORITE_PORTS, LOCAL_STORAGE_KEY, INITIAL_LOCAL_SITES, LOCAL_SITES_STORAGE_KEY } from './constants';
-import React, { useCallback, useEffect, useState } from 'react';
+import {
+  INITIAL_FAVORITE_PORTS,
+  LOCAL_STORAGE_KEY,
+  INITIAL_LOCAL_SITES,
+  LOCAL_SITES_STORAGE_KEY,
+} from './constants';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import AddPortModal from './components/AddPortModal';
 import AddSiteModal from './components/AddSiteModal';
@@ -11,12 +16,30 @@ import GithubIcon from './components/icons/Github';
 import type { Port, LocalSite } from './types';
 import SearchSection from './components/SearchSection';
 import ThemeSwitcher from './components/ThemeSwitcher';
+import { usePortStatus } from './hooks/usePortStatus';
 
 const App: React.FC = () => {
   const [favoritePorts, setFavoritePorts] = useState<Port[]>([]);
   const [localSites, setLocalSites] = useState<LocalSite[]>([]);
   const [isPortModalOpen, setIsPortModalOpen] = useState(false);
   const [isSiteModalOpen, setIsSiteModalOpen] = useState(false);
+
+  const portNumbers = useMemo(() => favoritePorts.map((port) => port.number), [favoritePorts]);
+
+  const { portStatus } = usePortStatus(portNumbers, {
+    interval: 30000,
+    timeout: 3000,
+    enabled: portNumbers.length > 0,
+  });
+
+  const portsWithStatus = useMemo(
+    () =>
+      favoritePorts.map((port) => ({
+        ...port,
+        isActive: portStatus[port.number],
+      })),
+    [favoritePorts, portStatus]
+  );
 
   useEffect(() => {
     try {
@@ -157,7 +180,7 @@ const App: React.FC = () => {
         <main className="space-y-12">
           <SearchSection />
           <FavoritePorts
-            ports={favoritePorts}
+            ports={portsWithStatus}
             onAddPortClick={() => setIsPortModalOpen(true)}
             onRemovePort={handleRemovePort}
             onRestoreDefaults={handleRestoreDefaults}

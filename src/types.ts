@@ -1,8 +1,8 @@
-
 export interface Port {
   number: number;
   description: string;
   color: string;
+  isActive?: boolean;
 }
 
 export interface LocalSite {
