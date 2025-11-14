@@ -1,19 +1,22 @@
 import { Grid2x2Plus, RotateCcw } from 'lucide-react';
+import { SortableItem } from './dnd/SortableItem';
+import { SortableList } from './dnd/SortableList';
 
 import type { LocalSite } from '../types';
 import React from 'react';
 
 interface LocalSitesProps {
   sites: LocalSite[];
+  setSites: (sites: LocalSite[]) => void;
   onAddSiteClick: () => void;
   onRemoveSite: (siteName: string) => void;
   onRestoreDefaults: () => void;
 }
 
-const SiteLink: React.FC<{ site: LocalSite; onRemove: (siteName: string) => void }> = ({
-  site,
-  onRemove,
-}) => (
+const SiteLink: React.FC<{
+  site: LocalSite;
+  onRemove: (siteName: string) => void;
+}> = ({ site, onRemove }) => (
   <a
     href={`http://localhost/${site.path}`}
     target="_blank"
@@ -42,6 +45,7 @@ const SiteLink: React.FC<{ site: LocalSite; onRemove: (siteName: string) => void
 
 const LocalSites: React.FC<LocalSitesProps> = ({
   sites,
+  setSites,
   onAddSiteClick,
   onRemoveSite,
   onRestoreDefaults,
@@ -63,11 +67,15 @@ const LocalSites: React.FC<LocalSitesProps> = ({
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {sites.map((site) => (
-          <SiteLink key={site.name} site={site} onRemove={onRemoveSite} />
-        ))}
-      </div>
+      <SortableList items={sites} onSortEnd={setSites} identifierKey="name">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {sites.map((site) => (
+            <SortableItem key={site.name} id={site.name}>
+              <SiteLink site={site} onRemove={onRemoveSite} />
+            </SortableItem>
+          ))}
+        </div>
+      </SortableList>
     </section>
   );
 };

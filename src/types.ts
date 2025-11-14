@@ -23,3 +23,10 @@ export interface SearchEngineOption {
   name: SearchEngine;
   url: string;
 }
+
+export interface DocumentationLink {
+  name: string;
+  url: string;
+  description: string;
+  color: string;
+}

@@ -1,10 +1,12 @@
 import { Grid2x2Plus, RotateCcw } from 'lucide-react';
-
+import { SortableItem } from './dnd/SortableItem';
+import { SortableList } from './dnd/SortableList';
 import type { Port } from '../types';
 import React from 'react';
 
 interface FavoritePortsProps {
   ports: Port[];
+  setPorts: (ports: Port[]) => void;
   onAddPortClick: () => void;
   onRemovePort: (portNumber: number) => void;
   onRestoreDefaults: () => void;
@@ -50,6 +52,7 @@ const PortLink: React.FC<{ port: Port; onRemove: (portNumber: number) => void }>
 
 const FavoritePorts: React.FC<FavoritePortsProps> = ({
   ports,
+  setPorts,
   onAddPortClick,
   onRemovePort,
   onRestoreDefaults,
@@ -73,11 +76,15 @@ const FavoritePorts: React.FC<FavoritePortsProps> = ({
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {ports.map((port) => (
-          <PortLink key={port.number} port={port} onRemove={onRemovePort} />
-        ))}
-      </div>
+      <SortableList items={ports} onSortEnd={setPorts} identifierKey="number">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {ports.map((port) => (
+            <SortableItem key={port.number} id={port.number}>
+              <PortLink port={port} onRemove={onRemovePort} />
+            </SortableItem>
+          ))}
+        </div>
+      </SortableList>
     </section>
   );
 };
