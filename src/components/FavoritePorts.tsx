@@ -1,10 +1,12 @@
 import { Grid2x2Plus, RotateCcw } from 'lucide-react';
-
+import { SortableItem } from './dnd/SortableItem';
+import { SortableList } from './dnd/SortableList';
 import type { Port } from '../types';
 import React from 'react';
 
 interface FavoritePortsProps {
   ports: Port[];
+  setPorts: (ports: Port[]) => void;
   onAddPortClick: () => void;
   onRemovePort: (portNumber: number) => void;
   onRestoreDefaults: () => void;
@@ -18,8 +20,17 @@ const PortLink: React.FC<{ port: Port; onRemove: (portNumber: number) => void }>
     href={`http://localhost:${port.number}`}
     target="_blank"
     rel="noopener noreferrer"
-    className={`card text-white shadow-xl transform transition-transform hover:scale-105 group ${port.color}`}
+    className={`card text-white shadow-xl transform transition-transform hover:scale-105 group relative ${
+      port.color
+    } ${port.isActive ? 'tooltip tooltip-success' : ''}`}
+    data-tip={port.isActive ? 'This port is active' : ''}
   >
+    {port.isActive !== undefined && port.isActive && (
+      <span
+        title="This port is active"
+        className="status status-success status-lg absolute top-0 right-0"
+      ></span>
+    )}
     <div className="card-body p-4 flex-row items-center justify-between">
       <div>
         <h3 className="card-title text-2xl font-bold">{port.number}</h3>
@@ -41,12 +52,13 @@ const PortLink: React.FC<{ port: Port; onRemove: (portNumber: number) => void }>
 
 const FavoritePorts: React.FC<FavoritePortsProps> = ({
   ports,
+  setPorts,
   onAddPortClick,
   onRemovePort,
   onRestoreDefaults,
 }) => {
   return (
-    <section className="bg-base-100 p-6 rounded-box border border-base-content/10">
+    <section className="bg-base-100 p-6 rounded-box ">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Favorite Ports</h2>
         <div className="flex gap-2">
@@ -64,11 +76,15 @@ const FavoritePorts: React.FC<FavoritePortsProps> = ({
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {ports.map((port) => (
-          <PortLink key={port.number} port={port} onRemove={onRemovePort} />
-        ))}
-      </div>
+      <SortableList items={ports} onSortEnd={setPorts} identifierKey="number">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {ports.map((port) => (
+            <SortableItem key={port.number} id={port.number}>
+              <PortLink port={port} onRemove={onRemovePort} />
+            </SortableItem>
+          ))}
+        </div>
+      </SortableList>
     </section>
   );
 };

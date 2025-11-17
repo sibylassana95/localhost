@@ -1,6 +1,32 @@
-import type { Port, SearchEngineOption, LocalSite } from './types';
+import type { LocalSite, Port, SearchEngineOption, DocumentationLink } from './types';
 
 import { SearchEngine } from './types';
+
+export const PORT_COLORS = [
+  'bg-sky-500',
+  'bg-red-500',
+  'bg-purple-500',
+  'bg-red-700',
+  'bg-green-500',
+  'bg-gray-500',
+  'bg-blue-600',
+  'bg-pink-500',
+  'bg-indigo-500',
+  'bg-teal-500',
+];
+
+export const SITE_COLORS = [
+  'bg-sky-500',
+  'bg-red-500',
+  'bg-purple-500',
+  'bg-green-500',
+  'bg-blue-600',
+  'bg-orange-500',
+  'bg-teal-500',
+  'bg-indigo-500',
+  'bg-pink-500',
+  'bg-yellow-500',
+];
 
 export const INITIAL_FAVORITE_PORTS: Port[] = [
   { number: 3000, description: 'Next.js / React', color: 'bg-sky-500' },
@@ -22,6 +48,24 @@ export const SEARCH_ENGINES: SearchEngineOption[] = [
 
 export const LOCAL_STORAGE_KEY = 'favoritePorts';
 export const LOCAL_SITES_STORAGE_KEY = 'localSites';
+export const DOC_LINKS_STORAGE_KEY = 'documentationLinks';
+
+export const DOC_LINK_COLORS = [
+  'bg-emerald-500',
+  'bg-rose-500',
+  'bg-amber-500',
+  'bg-cyan-500',
+  'bg-lime-500',
+  'bg-fuchsia-500',
+  'bg-stone-500',
+];
+
+export const INITIAL_DOC_LINKS: DocumentationLink[] = [
+  { name: 'React', url: 'https://react.dev', description: 'The library for web and native user interfaces', color: 'bg-sky-500' },
+  { name: 'TypeScript', url: 'https://www.typescriptlang.org/docs/', description: 'JavaScript with syntax for types', color: 'bg-blue-600' },
+  { name: 'Tailwind CSS', url: 'https://tailwindcss.com/docs', description: 'A utility-first CSS framework', color: 'bg-teal-500' },
+  { name: 'daisyUI', url: 'https://daisyui.com', description: 'The most popular component library for Tailwind CSS', color: 'bg-green-500' },
+];
 
 export const INITIAL_LOCAL_SITES: LocalSite[] = [
   { name: 'phpMyAdmin', path: 'phpmyadmin', description: 'Database Admin', color: 'bg-orange-500' },
