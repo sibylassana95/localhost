@@ -27,7 +27,7 @@ const CustomPortSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-base-100 p-6 rounded-box flex items-center justify-between flex-col md:flex-row">
+    <section className="bg-base-100 p-6 rounded-box shadow flex items-center justify-between flex-col md:flex-row">
       <h2 className="text-2xl font-bold mb-4">Custom Port</h2>
       <div className="join w-full md:w-1/2">
         <input

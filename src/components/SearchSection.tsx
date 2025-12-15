@@ -28,7 +28,7 @@ const SearchSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-base-100 p-6 rounded-box ">
+    <section className="bg-base-100 p-6 rounded-box shadow">
       <h2 className="text-2xl font-bold mb-4">Internet Search</h2>
       <div className="join w-full">
         <select

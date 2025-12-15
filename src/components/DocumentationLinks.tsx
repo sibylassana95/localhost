@@ -47,7 +47,7 @@ const DocumentationLinks: React.FC<DocumentationLinksProps> = ({
   onRestoreDefaults,
 }) => {
   return (
-    <section className="card bg-base-100 shadow-xl">
+    <section className="card bg-base-100 shadow">
       <div className="card-body">
         <div className="flex justify-between items-center mb-4">
           <h2 className="card-title">Documentation Links</h2>

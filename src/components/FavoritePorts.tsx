@@ -57,7 +57,7 @@ const FavoritePorts: React.FC<FavoritePortsProps> = ({
   onRestoreDefaults,
 }) => {
   return (
-    <section className="bg-base-100 p-6 rounded-box ">
+    <section className="bg-base-100 p-6 rounded-box shadow">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Favorite Ports</h2>
         <div className="flex gap-2">
