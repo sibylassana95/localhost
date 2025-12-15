@@ -38,7 +38,7 @@ const CustomPortSection: React.FC = () => {
           placeholder="Enter port (e.g., 3001)"
           min="1"
           max="65535"
-          className="input input-bordered join-item w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          className="input  join-item w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         />
         <button className="btn btn-secondary join-item" onClick={goToCustomPort}>
           <SquareArrowOutUpRight className="h-4 w-4 mr-1" />

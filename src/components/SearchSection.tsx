@@ -48,7 +48,7 @@ const SearchSection: React.FC = () => {
           onChange={(e) => setQuery(e.target.value)}
           onKeyPress={handleKeyPress}
           placeholder="Search the web..."
-          className="input input-bordered join-item w-full"
+          className="input  join-item w-full"
         />
         <button className="btn btn-primary join-item" onClick={handleSearch}>
           <Search className="w-4 h-4 mr-1" />
