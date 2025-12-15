@@ -18,7 +18,6 @@ const DocLink: React.FC<{
 }> = ({ link, onRemove }) => (
   <a
     href={link.url}
-    target="_blank"
     rel="noopener noreferrer"
     className={`card text-white shadow-xl transform transition-transform hover:scale-105 group ${link.color}`}
   >

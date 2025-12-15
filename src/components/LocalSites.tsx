@@ -19,7 +19,6 @@ const SiteLink: React.FC<{
 }> = ({ site, onRemove }) => (
   <a
     href={`http://localhost/${site.path}`}
-    target="_blank"
     rel="noopener noreferrer"
     className={`card text-white shadow-xl transform transition-transform hover:scale-105 group ${site.color}`}
   >

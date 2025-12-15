@@ -145,7 +145,6 @@ const App: React.FC = () => {
           <p className="text-base-content/50">Happy coding!</p>
           <a
             href="https://github.com/Ygryan360/localhost.git"
-            target="_blank"
             rel="noopener noreferrer"
             title="Star on GitHub"
           >
