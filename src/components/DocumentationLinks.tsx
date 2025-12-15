@@ -1,8 +1,8 @@
-import React from 'react';
-import { FaPlus } from 'react-icons/fa';
 import type { DocumentationLink } from '../types';
-import { SortableList } from './dnd/SortableList';
+import { FaPlus } from 'react-icons/fa';
+import React from 'react';
 import { SortableItem } from './dnd/SortableItem';
+import { SortableList } from './dnd/SortableList';
 
 interface DocumentationLinksProps {
   links: DocumentationLink[];

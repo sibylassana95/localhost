@@ -1,9 +1,9 @@
 import { Grid2x2Plus, RotateCcw } from 'lucide-react';
-import { SortableItem } from './dnd/SortableItem';
-import { SortableList } from './dnd/SortableList';
 
 import type { LocalSite } from '../types';
 import React from 'react';
+import { SortableItem } from './dnd/SortableItem';
+import { SortableList } from './dnd/SortableList';
 
 interface LocalSitesProps {
   sites: LocalSite[];
