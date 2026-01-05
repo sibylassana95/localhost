@@ -1,8 +1,8 @@
-import React from 'react';
-import { FaPlus } from 'react-icons/fa';
 import type { DocumentationLink } from '../types';
-import { SortableList } from './dnd/SortableList';
+import { FaPlus } from 'react-icons/fa';
+import React from 'react';
 import { SortableItem } from './dnd/SortableItem';
+import { SortableList } from './dnd/SortableList';
 
 interface DocumentationLinksProps {
   links: DocumentationLink[];
@@ -18,7 +18,6 @@ const DocLink: React.FC<{
 }> = ({ link, onRemove }) => (
   <a
     href={link.url}
-    target="_blank"
     rel="noopener noreferrer"
     className={`card text-white shadow-xl transform transition-transform hover:scale-105 group ${link.color}`}
   >
@@ -48,7 +47,7 @@ const DocumentationLinks: React.FC<DocumentationLinksProps> = ({
   onRestoreDefaults,
 }) => {
   return (
-    <section className="card bg-base-100 shadow-xl">
+    <section className="card bg-base-100 shadow">
       <div className="card-body">
         <div className="flex justify-between items-center mb-4">
           <h2 className="card-title">Documentation Links</h2>

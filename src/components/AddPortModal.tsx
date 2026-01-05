@@ -57,7 +57,7 @@ const AddPortModal: React.FC<AddPortModalProps> = ({ isOpen, onClose, onAdd }) =
             <input
               type="number"
               placeholder="e.g., 8888"
-              className="input input-bordered w-full"
+              className="input w-full"
               value={portNumber}
               onChange={(e) => setPortNumber(e.target.value)}
               required
@@ -70,7 +70,7 @@ const AddPortModal: React.FC<AddPortModalProps> = ({ isOpen, onClose, onAdd }) =
             <input
               type="text"
               placeholder="e.g., SvelteKit App"
-              className="input input-bordered w-full"
+              className="input  w-full"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required

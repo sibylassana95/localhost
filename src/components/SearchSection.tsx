@@ -28,7 +28,7 @@ const SearchSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-base-100 p-6 rounded-box ">
+    <section className="bg-base-100 p-6 rounded-box shadow">
       <h2 className="text-2xl font-bold mb-4">Internet Search</h2>
       <div className="join w-full">
         <select
@@ -48,7 +48,7 @@ const SearchSection: React.FC = () => {
           onChange={(e) => setQuery(e.target.value)}
           onKeyPress={handleKeyPress}
           placeholder="Search the web..."
-          className="input input-bordered join-item w-full"
+          className="input  join-item w-full"
         />
         <button className="btn btn-primary join-item" onClick={handleSearch}>
           <Search className="w-4 h-4 mr-1" />

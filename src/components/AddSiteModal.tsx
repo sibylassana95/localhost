@@ -62,7 +62,7 @@ const AddSiteModal: React.FC<AddSiteModalProps> = ({ isOpen, onClose, onAdd }) =
             <input
               type="text"
               placeholder="e.g., My Project"
-              className="input input-bordered w-full"
+              className="input  w-full"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -73,7 +73,7 @@ const AddSiteModal: React.FC<AddSiteModalProps> = ({ isOpen, onClose, onAdd }) =
             <input
               type="text"
               placeholder="e.g., Projects/my-project"
-              className="input input-bordered w-full"
+              className="input  w-full"
               value={path}
               onChange={(e) => setPath(e.target.value)}
               required
@@ -84,7 +84,7 @@ const AddSiteModal: React.FC<AddSiteModalProps> = ({ isOpen, onClose, onAdd }) =
             <input
               type="text"
               placeholder="e.g., WordPress site"
-              className="input input-bordered w-full"
+              className="input  w-full"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />

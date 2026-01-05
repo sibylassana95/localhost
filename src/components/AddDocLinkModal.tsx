@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import type { DocumentationLink } from '../types';
 
 interface AddDocLinkModalProps {
@@ -30,39 +31,33 @@ const AddDocLinkModal: React.FC<AddDocLinkModalProps> = ({ isOpen, onClose, onAd
     <div className="modal modal-open">
       <div className="modal-box">
         <h3 className="font-bold text-lg">Add New Documentation Link</h3>
-        <form onSubmit={handleSubmit}>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Name</span>
-            </label>
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+          <div>
+            <label className="label mb-2">Name</label>
             <input
               type="text"
               placeholder="e.g., React Docs"
-              className="input input-bordered"
+              className="input w-full"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">URL</span>
-            </label>
+          <div>
+            <label className="label mb-2">URL</label>
             <input
               type="url"
               placeholder="https://react.dev"
-              className="input input-bordered"
+              className="input w-full"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             />
           </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Description</span>
-            </label>
+          <div>
+            <label className="label mb-2">Description</label>
             <input
               type="text"
               placeholder="Official React documentation"
-              className="input input-bordered"
+              className="input w-full"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />

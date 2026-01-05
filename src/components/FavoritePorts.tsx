@@ -1,8 +1,9 @@
 import { Grid2x2Plus, RotateCcw } from 'lucide-react';
-import { SortableItem } from './dnd/SortableItem';
-import { SortableList } from './dnd/SortableList';
+
 import type { Port } from '../types';
 import React from 'react';
+import { SortableItem } from './dnd/SortableItem';
+import { SortableList } from './dnd/SortableList';
 
 interface FavoritePortsProps {
   ports: Port[];
@@ -18,7 +19,6 @@ const PortLink: React.FC<{ port: Port; onRemove: (portNumber: number) => void }>
 }) => (
   <a
     href={`http://localhost:${port.number}`}
-    target="_blank"
     rel="noopener noreferrer"
     className={`card text-white shadow-xl transform transition-transform hover:scale-105 group relative ${
       port.color
@@ -58,7 +58,7 @@ const FavoritePorts: React.FC<FavoritePortsProps> = ({
   onRestoreDefaults,
 }) => {
   return (
-    <section className="bg-base-100 p-6 rounded-box ">
+    <section className="bg-base-100 p-6 rounded-box shadow">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Favorite Ports</h2>
         <div className="flex gap-2">

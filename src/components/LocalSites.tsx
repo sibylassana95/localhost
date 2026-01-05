@@ -1,9 +1,9 @@
 import { Grid2x2Plus, RotateCcw } from 'lucide-react';
-import { SortableItem } from './dnd/SortableItem';
-import { SortableList } from './dnd/SortableList';
 
 import type { LocalSite } from '../types';
 import React from 'react';
+import { SortableItem } from './dnd/SortableItem';
+import { SortableList } from './dnd/SortableList';
 
 interface LocalSitesProps {
   sites: LocalSite[];
@@ -19,7 +19,6 @@ const SiteLink: React.FC<{
 }> = ({ site, onRemove }) => (
   <a
     href={`http://localhost/${site.path}`}
-    target="_blank"
     rel="noopener noreferrer"
     className={`card text-white shadow-xl transform transition-transform hover:scale-105 group ${site.color}`}
   >
@@ -51,7 +50,7 @@ const LocalSites: React.FC<LocalSitesProps> = ({
   onRestoreDefaults,
 }) => {
   return (
-    <section className="bg-base-100 p-6 rounded-box ">
+    <section className="bg-base-100 p-6 rounded-box shadow">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Local Sites</h2>
         <div className="flex gap-2">
